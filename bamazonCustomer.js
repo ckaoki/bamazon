@@ -24,19 +24,18 @@ connection.connect(function(err) {
 
 function showAllProducts() {
     console.log("Below are the products available at Bamazon.");
-    var query = "SELECT * FROM products"
+    var query = "SELECT item_id, product_name, price FROM products"
     connection.query(query, function(err, data) {
         if (err) throw err;
-        productsDB = data;
-        // Create table  
-        var header = Object.keys(data[0]); 
+   
+        var headers = Object.keys(data[0]);
         var table = new cliTable({
-            head: header,
+            head: headers,
         });  
 
         data.forEach(element => {
-            var item = Object.values(element);
-            item[3] = '$' + item[3].toFixed(2).toString();
+            var item =  Object.values(element);
+            item[2] = '$' + item[2].toFixed(2).toString();
             table.push(item);           
         });        
         
@@ -81,7 +80,7 @@ function promptCustomerForPurchase(){
                 connection.query(query, [stockQuantity, itemID], function(){
                     if(err) throw err;                    
                 })
-                var totalPrice = unitsToBuy * parseInt(data[0].price);
+                var totalPrice = unitsToBuy * parseFloat(data[0].price);
                 console.log("The total cost of you purchase is $" + totalPrice.toFixed(2));
             }
             connection.end();
