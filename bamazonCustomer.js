@@ -34,8 +34,8 @@ function showAllProducts() {
         });  
 
         data.forEach(element => {
+            element.price = '$' + element.price.toFixed(2).toString();
             var item =  Object.values(element);
-            item[2] = '$' + item[2].toFixed(2).toString();
             table.push(item);           
         });        
         
@@ -69,15 +69,17 @@ function promptCustomerForPurchase(){
 
         connection.query(query, {item_id: itemID}, function(err, data){
             if(err) throw err;    
-            var stockQuantity =  parseInt(data[0].stock_quantity);
+            var stockQuantity =  data[0].stock_quantity;
+            var productSales = data[0].product_sales;
             if(unitsToBuy >  stockQuantity)
             {
                 console.log("Sorry, insufficient stock on hand.");                
             }
             else{
                 stockQuantity -= unitsToBuy;
-                var query = "UPDATE products SET stock_quantity =? WHERE item_id=?";
-                connection.query(query, [stockQuantity, itemID], function(){
+                productSales += unitsToBuy * data[0].price;
+                var query = "UPDATE products SET stock_quantity = ?, product_sales = ? WHERE item_id=?";
+                connection.query(query, [stockQuantity, productSales, itemID], function(){
                     if(err) throw err;                    
                 })
                 var totalPrice = unitsToBuy * parseFloat(data[0].price);
@@ -86,5 +88,4 @@ function promptCustomerForPurchase(){
             connection.end();
         });
     }
-
 }

@@ -62,6 +62,7 @@ function viewProducts() {
 
         data.forEach(element => {
             element.price = '$' + element.price.toFixed(2).toString();  // format price as currency
+            element.product_sales = '$' + element.product_sales.toFixed(2).toString();  // format price as currency
             var item =  Object.values(element);           
             table.push(item);           
         });        
@@ -86,6 +87,7 @@ function viewLowInventory() {
 
         data.forEach(element => {
             element.price = '$' + element.price.toFixed(2).toString();  // format price as currency
+            element.product_sales = '$' + element.product_sales.toFixed(2).toString();  // format price as currency
             if(element.stock_quantity < 5){
                 table.push(Object.values(element));  
             }
@@ -132,6 +134,7 @@ function addToInventory(){
 
 }
 
+// add a new product
 function addNewProduct(){
     inquirer.prompt([    
         {

@@ -8,10 +8,11 @@ USE bamazon;
 
 CREATE TABLE products(
     item_id INTEGER(10) AUTO_INCREMENT NOT NULL,
-    product_name VARCHAR(50) DEFAULT 'TBD',
-    department_name VARCHAR(50) DEFAULT 'TBD',
+    product_name VARCHAR(50) DEFAULT '',
+    department_name VARCHAR(50) DEFAULT '',
     price DECIMAL(13,2) DEFAULT 0,
     stock_quantity INTEGER(10) DEFAULT 0,
+    product_sales DECIMAL(13,2) DEFAULT 0,
     PRIMARY KEY (item_id)
 );
 
@@ -45,3 +46,25 @@ VALUES ('Diapers', 'Baby', 30.00, 50000);
 
 INSERT	INTO products(product_name, department_name, price, stock_quantity)
 VALUES ('Baby Wash', 'Baby', 30.00, 5000);
+
+CREATE TABLE departments(
+    department_id INTEGER(10) AUTO_INCREMENT NOT NULL,
+    department_name VARCHAR(50) DEFAULT '',
+    over_head_costs DECIMAL(13,2) DEFAULT 0,
+    PRIMARY KEY (department_id)
+);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES('Books', 10000);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES('Kitchen', 20000);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES('Electronics', 30000);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES('Clothing', 40000);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES('Baby', 50000);
