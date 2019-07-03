@@ -8,10 +8,10 @@ USE bamazon;
 
 CREATE TABLE products(
     item_id INTEGER(10) AUTO_INCREMENT NOT NULL,
-    product_name VARCHAR(50),
-    department_name VARCHAR(50),
-    price DECIMAL(13,2),
-    stock_quantity INTEGER(10),
+    product_name VARCHAR(50) DEFAULT 'TBD',
+    department_name VARCHAR(50) DEFAULT 'TBD',
+    price DECIMAL(13,2) DEFAULT 0,
+    stock_quantity INTEGER(10) DEFAULT 0,
     PRIMARY KEY (item_id)
 );
 

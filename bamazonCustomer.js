@@ -66,7 +66,7 @@ function promptCustomerForPurchase(){
 
     function placeOrder(itemID, unitsToBuy){
         var query = "SELECT * FROM products WHERE ?"
-        var abc = '5';
+
         connection.query(query, {item_id: itemID}, function(err, data){
             if(err) throw err;    
             var stockQuantity =  parseInt(data[0].stock_quantity);
