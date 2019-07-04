@@ -18,7 +18,7 @@ CREATE TABLE products(
 
 -- Create new example products
 INSERT	INTO products(product_name, department_name, price, stock_quantity)
-VALUES ('Green Eggs and Ham', 'Books', 9.00, 100);
+VALUES ('Green Eggs and Ham', 'Books', 9.00, 100000);
 
 INSERT	INTO products(product_name, department_name, price, stock_quantity)
 VALUES ('Where the Wild Things Are', 'Books', 3.50, 200);
